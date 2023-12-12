@@ -24,71 +24,38 @@ Obter extrato de transações.
  
 ![screenshot](https://raw.githubusercontent.com/amitmerchant1990/electron-markdownify/master/app/img/markdownify.gif)
 
-## Características principais
+## Como Usar
 
-eu papel é construir uma RESTful API que permita:
-
-Cadastrar Usuário
-Fazer Login
-Detalhar Perfil do Usuário Logado
-Editar Perfil do Usuário Logado
-Listar categorias
-Listar transações
-Detalhar transação
-Cadastrar transação
-Editar transação
-Remover transação
-Obter extrato de transações
-
-## How To Use
-
-To clone and run this application, you'll need [Git](https://git-scm.com) and [Node.js](https://nodejs.org/en/download/) (which comes with [npm](http://npmjs.com)) installed on your computer. From your command line:
+Para clonar e executar esta aplicação, você precisará do Git e do Node.js (que vem com o npm) instalados em seu computador. No seu terminal de comando:
 
 ```bash
-# Clone this repository
-$ git clone https://github.com/amitmerchant1990/electron-markdownify
+# Clone o repositorio
+$ git clone https://github.com/Joanna-Ribeiro/APIFinancas.git
 
 # Go into the repository
-$ cd electron-markdownify
+$ cd APIFinancas
 
-# Install dependencies
+# Instale as dependências
 $ npm install
 
-# Run the app
-$ npm start
+# Inicie a aplicação
+$ npm run start
 ```
 
-> **Note**
-> If you're using Linux Bash for Windows, [see this guide](https://www.howtogeek.com/261575/how-to-run-graphical-linux-desktop-applications-from-windows-10s-bash-shell/) or use `node` from the command prompt.
-
-
-## Download
-
-You can [download](https://github.com/amitmerchant1990/electron-markdownify/releases/tag/v1.2.0) the latest installable version of Markdownify for Windows, macOS and Linux.
+> **Nota**
+>Se você estiver usando o Linux Bash no Windows, [consulte este guia](https://www.howtogeek.com/261575/how-to-run-graphical-linux-desktop-applications-from-windows-10s-bash-shell/) ou utilize o comando `node` a partir do prompt de comando.
 
 ## Emailware
 
-Markdownify is an [emailware](https://en.wiktionary.org/wiki/emailware). Meaning, if you liked using this app or it has helped you in any way, I'd like you send me an email at <bullredeyes@gmail.com> about anything you'd want to say about this software. I'd really appreciate it!
+APIFinanças é um software de gestão de finanças pessoais . Ou seja, se você gostou de usar este aplicativo ou se ele o ajudou de alguma forma, gostaria que você me enviasse um e-mail para joannac581@gmail.com sobre qualquer coisa que gostaria de dizer sobre este software. Eu realmente aprecio isso!
 
-## Credits
+## Créditos
 
-This software uses the following open source packages:
+Este software utiliza os seguintes pacotes de código aberto:
 
-- [Electron](http://electron.atom.io/)
 - [Node.js](https://nodejs.org/)
-- [Marked - a markdown parser](https://github.com/chjj/marked)
-- [showdown](http://showdownjs.github.io/showdown/)
-- [CodeMirror](http://codemirror.net/)
-- Emojis are taken from [here](https://github.com/arvida/emoji-cheat-sheet.com)
-- [highlight.js](https://highlightjs.org/)
-
-## Related
-
-[markdownify-web](https://github.com/amitmerchant1990/markdownify-web) - Web version of Markdownify
-
-## Support
-
-<a href="https://www.buymeacoffee.com/5Zn8Xh3l9" target="_blank"><img src="https://www.buymeacoffee.com/assets/img/custom_images/purple_img.png" alt="Buy Me A Coffee" style="height: 41px !important;width: 174px !important;box-shadow: 0px 3px 2px 0px rgba(190, 190, 190, 0.5) !important;-webkit-box-shadow: 0px 3px 2px 0px rgba(190, 190, 190, 0.5) !important;" ></a>
+- [Docker](https://www.docker.com/)
+- [PostgreSQL](https://www.postgresql.org/)
 
 <p>Or</p> 
 
@@ -96,24 +63,9 @@ This software uses the following open source packages:
 	<img src="https://c5.patreon.com/external/logo/become_a_patron_button@2x.png" width="160">
 </a>
 
-## You may also like...
-
-- [Pomolectron](https://github.com/amitmerchant1990/pomolectron) - A pomodoro app
-- [Correo](https://github.com/amitmerchant1990/correo) - A menubar/taskbar Gmail App for Windows and macOS
-
-## License
-
-MIT
-
 ---
 
-> [amitmerchant.com](https://www.amitmerchant.com) &nbsp;&middot;&nbsp;
-> GitHub [@amitmerchant1990](https://github.com/amitmerchant1990) &nbsp;&middot;&nbsp;
-> Twitter [@amit_merchant](https://twitter.com/amit_merchant)
-
-
-
-## Contributors ✨
+## Contribuidores ✨
 
 <table>
   <tbody>
