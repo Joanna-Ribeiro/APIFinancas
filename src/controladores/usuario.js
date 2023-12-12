@@ -8,8 +8,8 @@ async function cadastrarUsuario(req, res) {
   const { nome, email, senha } = req.body
 
   try {
-    let verificarEmail = "SELECT * FROM usuarios WHERE email = $1;";
-    let resultadoVerificacao = await conexaoPool.query(verificarEmail, [email]);
+    const verificarEmail = "SELECT * FROM usuarios WHERE email = $1;";
+    const resultadoVerificacao = await conexaoPool.query(verificarEmail, [email]);
 
     if (resultadoVerificacao.rowCount > 0) {
       return res.status(400).json({ mensagem: 'Este email já está registrado' });
