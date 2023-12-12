@@ -60,7 +60,7 @@ async function loginUsuario(req, res) {
 
     const { senha: _, ...usuarioLogado } = usuario.rows[0];
 
-    return res.json({ usuario: usuarioLogado, token });
+    return res.status(200).json({ usuario: usuarioLogado, token });  
 
   }
 
