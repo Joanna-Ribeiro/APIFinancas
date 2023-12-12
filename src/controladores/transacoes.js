@@ -38,7 +38,7 @@ async function detalharTransacao(req, res) {
         if (transacaoDetalhada.rowCount !== 1) {
             return res.status(401).json({ "mensagem": "Transação não encontrada" })
         }
-        return res.status(201).json(transacaoDetalhada.rows[0]);
+        return res.status(200).json(transacaoDetalhada.rows[0]);
     } catch (error) {
         return res.status(500).json({ "mensagem": "Erro interno do servidor" });
     }
@@ -103,7 +103,7 @@ async function obterExtrato(req, res) {
         if (extratoSaida.rows[0].saida === null) {
             extratoSaida.rows[0].saida = 0;
         }
-        return res.status(201).json({
+        return res.status(200).json({
             "entrada": Number(extratoEntrada.rows[0].entrada),
             "saida": Number(extratoSaida.rows[0].saida)
         });
