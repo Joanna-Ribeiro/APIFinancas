@@ -22,7 +22,7 @@ Obter extrato de transações.
 
  
 <p align="center" >
-<img width="500" src="src/assets/to_readme/exibir-extrato.png">
+<img width="1500" src="src/assets/to_readme/exibir-extrato.png">
 </p>
 
 ## Como Usar
