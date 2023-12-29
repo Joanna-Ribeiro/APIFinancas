@@ -1,7 +1,7 @@
 const conexaoPool = require('../config/conexao.js')
 const bcrypt = require("bcrypt")
 const jwt = require("jsonwebtoken")
-const senhaJwt = require('../senhaJWT.js')
+const senhaJwt = require('../senhaJWT')
 
 async function cadastrarUsuario(req, res) {
 
@@ -32,7 +32,6 @@ async function cadastrarUsuario(req, res) {
     return res.status(500).json({ mensagem: "Erro interno no servidor!" });
   }
 }
-
 
 async function loginUsuario(req, res) {
   const { email, senha } = req.body;
@@ -80,7 +79,6 @@ async function detalharUsuario(req, res) {
 
 async function atualizarUsuario(req, res) {
   const { nome, email, senha } = req.body;
-  const { id } = req.params;
 
   try {
     const senhaCriptografada = await bcrypt.hash(senha, 10);

@@ -25,6 +25,11 @@ const validarUsuarioLogado = async (req, res, next) => {
 
 		req.usuario = rows[0]
 
+		const agora = Math.floor(Date.now() / 1000)
+		if (req.usuario.exp < agora) {
+			return res.status(401).json({ mensagem: 'Token expirado' })
+		}
+
 		next()
         
 	} catch (error) {
