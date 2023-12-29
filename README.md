@@ -78,6 +78,5 @@ Este software utiliza os seguintes pacotes de código aberto:
 
 ## Obrigada
 
-<a href="https://www.chromaticqa.com/"><img src="[https://cdn-images-1.medium.com/letterbox/147/36/50/50/1*oHHjTjInDOBxIuYHDY2gFA.png?source=logoAvatar-d7276495b101---37816ec27d7a](https://www.google.com/url?sa=i&url=https%3A%2F%2Fgithub.com%2Fcubos-academy&psig=AOvVaw2lvQwfuIo7Xu_wv4Y6rA1P&ust=1702502900501000&source=images&cd=vfe&opi=89978449&ved=0CBEQjRxqFwoTCOiuj9nrioMDFQAAAAAdAAAAABAE)" width="120"/></a>
-
+<img src="src/assets/to_readme/cubos_academy_logo.jpeg" width="50"/>
 Agradecemos à Cubos Academy por fornecer uma plataforma educacional de alta qualidade que tem sido fundamental para o desenvolvimento e aprimoramento das habilidades técnicas necessárias para este projeto. 
