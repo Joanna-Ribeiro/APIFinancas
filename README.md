@@ -15,7 +15,7 @@ Obter extrato de transações.
 
 <h1 align="center">
   <br>
-  <img width="500" src="src/assets/to_readme/Logo-APIFINANCAS.png">
+  <img width="200" src="src/assets/to_readme/Logo-APIFINANCAS.png">
   <br>
   APIFinanças
 </h1>
