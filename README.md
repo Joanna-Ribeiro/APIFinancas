@@ -15,14 +15,15 @@ Obter extrato de transações.
 
 <h1 align="center">
   <br>
-  <a href="http://www.amitmerchant.com/electron-markdownify"><img src="https://raw.githubusercontent.com/amitmerchant1990/electron-markdownify/master/app/img/markdownify.png" alt="APIFinanças" width="200"></a>
+  <img width="500" src="src/assets/to_readme/Logo-APIFINANCAS.png">
   <br>
   APIFinanças
-  <br>
 </h1>
 
  
-![screenshot](https://raw.githubusercontent.com/amitmerchant1990/electron-markdownify/master/app/img/markdownify.gif)
+<p align="center" >
+<img width="1500" src="src/assets/to_readme/exibir-extrato.png">
+</p>
 
 ## Como Usar
 
@@ -66,8 +67,8 @@ Este software utiliza os seguintes pacotes de código aberto:
 <table>
   <tbody>
     <tr>
-      <td align="center" valign="top" width="14.28%"><a href="http://ivesvh.com"><img src="https://avatars0.githubusercontent.com/u/587016?v=3?s=100" width="100px;" alt="Joanna Ribeiro"/><br /><sub><b>Joanna Ribeiro</b></sub></a><br /><a href="#question-CompuIves" title="Answering Questions">💬</a> <a href="#blog-CompuIves" title="Blogposts">📝</a> <a href="https://github.com/codesandbox/codesandbox-client/issues?q=author%3ACompuIves" title="Bug reports">🐛</a> <a href="https://github.com/codesandbox/codesandbox-client/commits?author=CompuIves" title="Code">💻</a> <a href="#design-CompuIves" title="Design">🎨</a> <a href="https://github.com/codesandbox/codesandbox-client/commits?author=CompuIves" title="Documentation">📖</a> <a href="#example-CompuIves" title="Examples">💡</a> <a href="#infra-CompuIves" title="Infrastructure (Hosting, Build-Tools, etc)">🚇</a> <a href="https://github.com/codesandbox/codesandbox-client/pulls?q=is%3Apr+reviewed-by%3ACompuIves" title="Reviewed Pull Requests">👀</a> <a href="https://github.com/codesandbox/codesandbox-client/commits?author=CompuIves" title="Tests">⚠️</a> <a href="#tool-CompuIves" title="Tools">🔧</a></td>
-      <td align="center" valign="top" width="14.28%"><a href="http://donavon.com"><img src="https://avatars0.githubusercontent.com/u/887639?v=3?s=100" width="100px;" alt="Jéssica Lira"/><br /><sub><b>Jéssica Lira</b></sub></a><br /><a href="https://github.com/codesandbox/codesandbox-client/commits?author=donavon" title="Code">💻</a></td>
+      <td align="center" valign="top" width="14.28%"><img src="src/assets/to_readme/joanna.jpeg" width="100px;" alt="Joanna Ribeiro"/><br /><sub><b>Joanna Ribeiro</b></sub></a><br /><a href="#question-CompuIves" title="Answering Questions">💬</a> <a href="#blog-CompuIves" title="Blogposts">📝</a> <a href="https://github.com/codesandbox/codesandbox-client/issues?q=author%3ACompuIves" title="Bug reports">🐛</a> <a href="https://github.com/codesandbox/codesandbox-client/commits?author=CompuIves" title="Code">💻</a></a> <a href="https://github.com/codesandbox/codesandbox-client/commits?author=CompuIves" title="Documentation">📖</a> <a href="#example-CompuIves" title="Examples">💡</a> <a href="#infra-CompuIves" title="Infrastructure (Hosting, Build-Tools, etc)">🚇</a> <a href="https://github.com/codesandbox/codesandbox-client/pulls?q=is%3Apr+reviewed-by%3ACompuIves" title="Reviewed Pull Requests">👀</a> <a href="https://github.com/codesandbox/codesandbox-client/commits?author=CompuIves" title="Tests">⚠️</a> <a href="#tool-CompuIves" title="Tools">🔧</a></td>
+      <td align="center" valign="top" width="14.28%"><img src="src/assets/to_readme/jessica.jpeg" width="100px;" alt="Jéssica Lira"/><br /><sub><b>Jéssica Lira</b></sub></a><br /><a href="https://github.com/codesandbox/codesandbox-client/commits?author=donavon" title="Code">💻</a></td>
     
   </tbody>
 </table>
@@ -77,6 +78,5 @@ Este software utiliza os seguintes pacotes de código aberto:
 
 ## Obrigada
 
-<a href="https://www.chromaticqa.com/"><img src="[https://cdn-images-1.medium.com/letterbox/147/36/50/50/1*oHHjTjInDOBxIuYHDY2gFA.png?source=logoAvatar-d7276495b101---37816ec27d7a](https://www.google.com/url?sa=i&url=https%3A%2F%2Fgithub.com%2Fcubos-academy&psig=AOvVaw2lvQwfuIo7Xu_wv4Y6rA1P&ust=1702502900501000&source=images&cd=vfe&opi=89978449&ved=0CBEQjRxqFwoTCOiuj9nrioMDFQAAAAAdAAAAABAE)" width="120"/></a>
-
+<img src="src/assets/to_readme/cubos_academy_logo.jpeg" width="50"/>
 Agradecemos à Cubos Academy por fornecer uma plataforma educacional de alta qualidade que tem sido fundamental para o desenvolvimento e aprimoramento das habilidades técnicas necessárias para este projeto. 
