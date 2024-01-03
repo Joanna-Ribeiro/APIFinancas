@@ -143,46 +143,31 @@ Essa é a rota que permite o usuario cadastrado realizar o login no sistema.
 
 
 <p align="center" >
-<img width="2000" src="src/assets/to_readme/login.jpeg">
+<img width="2000" src="src/assets/to_readme/login.png">
 </p>
 
 
-### Criação de conta
+### Detalhar Perfil do Usuário Logado
   
-`POST` `/usuario`
+`GET` `/usuario`
 
-Essa é a rota que será utilizada para cadastrar um novo usuario no sistema.
+Essa é a rota que será chamada quando o usuario quiser obter os dados do seu próprio perfil.  
+**Atenção!:** O usuário deverá ser identificado através do ID presente no token de autenticação.
 
 - **Requisição**  
   Sem parâmetros de rota ou de query.  
-  O corpo (body) deverá possuir um objeto com as seguintes propriedades (respeitando estes nomes):
-
-  - nome
-  - email
-  - senha
+  Não deverá possuir conteúdo no corpo da requisição.
 
 - **Resposta**  
-  Em caso de **sucesso**, deveremos enviar no corpo (body) da resposta o conteúdo do usuário cadastrado, incluindo seu respectivo `id` e excluindo a senha criptografada.
-  Em caso de **falha na validação**, a resposta deverá possuir **_status code_** apropriado, e em seu corpo (body) deverá possuir um objeto com uma propriedade **mensagem** que deverá possuir como valor um texto explicando o motivo da falha.
-
-- **REQUISITOS OBRIGATÓRIOS**
-  - Validação dos campos obrigatórios:
-    - nome
-    - email
-    - senha
-  - Valida se o e-mail informado já existe
-  - Senha é criptografada antes de persistir no banco de dados
-  - Usuário  é cadastrado no banco de dados
+  Em caso de **sucesso**, o corpo (body) da resposta deverá possuir um objeto que representa o usuário encontrado, com todas as suas propriedades (exceto a senha), conforme exemplo abaixo, acompanhado de **_status code_** apropriado.  
+  Em caso de **falha na validação**, a resposta deverá possuir **_status code_** apropriado, e em seu corpo (body) deverá possuir um objeto com uma propriedade **mensagem** que deverá possuir como valor um texto explicando o motivo da falha.  
+  **Dica:** neste endpoint podemos fazer uso do status code 401 (Unauthorized).
 
 #### **Exemplo de requisição**
 
 ```javascript
-// POST /usuario
-{
-    "nome": "José",
-    "email": "jose@email.com",
-    "senha": "123456"
-}
+// GET /usuario
+// Sem conteúdo no corpo (body) da requisição
 ```
 
 #### **Exemplos de resposta**
@@ -199,20 +184,21 @@ Essa é a rota que será utilizada para cadastrar um novo usuario no sistema.
 ```javascript
 // HTTP Status 400 / 401 / 403 / 404
 {
-    "mensagem": "Já existe usuário cadastrado com o e-mail informado."
+    "mensagem": "Para acessar este recurso um token de autenticação válido deve ser enviado."
 }
 ```
 
-
 <p align="center" >
-<img width="2000" src="src/assets/to_readme/criar-conta.png">
+<img width="2000" src="src/assets/to_readme/detalhar-usuario-logado.png">
 </p>
 
-### Criação de conta
-  
-`POST` `/usuario`
 
-Essa é a rota que será utilizada para cadastrar um novo usuario no sistema.
+### **Atualizar usuário**
+
+#### `PUT` `/usuario`
+
+Essa é a rota que será chamada quando o usuário quiser realizar alterações no seu próprio usuário.  
+**Atenção!:** O usuário deverá ser identificado através do ID presente no token de autenticação.
 
 - **Requisição**  
   Sem parâmetros de rota ou de query.  
@@ -223,26 +209,27 @@ Essa é a rota que será utilizada para cadastrar um novo usuario no sistema.
   - senha
 
 - **Resposta**  
-  Em caso de **sucesso**, deveremos enviar no corpo (body) da resposta o conteúdo do usuário cadastrado, incluindo seu respectivo `id` e excluindo a senha criptografada.
+  Em caso de **sucesso**, não deveremos enviar conteúdo no corpo (body) da resposta.  
   Em caso de **falha na validação**, a resposta deverá possuir **_status code_** apropriado, e em seu corpo (body) deverá possuir um objeto com uma propriedade **mensagem** que deverá possuir como valor um texto explicando o motivo da falha.
 
 - **REQUISITOS OBRIGATÓRIOS**
-  - Validação dos campos obrigatórios:
+  - Validar os campos obrigatórios:
     - nome
     - email
     - senha
-  - Valida se o e-mail informado já existe
-  - Senha é criptografada antes de persistir no banco de dados
-  - Usuário  é cadastrado no banco de dados
+  - Validar se o novo e-mail já existe no banco de dados para outro usuário
+    - Caso já exista o novo e-mail fornecido para outro usuário no banco de dados, a alteração não deve ser permitida (o campo de email deve ser sempre único no banco de dados)
+  - Criptografar a senha antes de salvar no banco de dados
+  - Atualizar as informações do usuário no banco de dados
 
 #### **Exemplo de requisição**
 
 ```javascript
-// POST /usuario
+// PUT /usuario
 {
-    "nome": "José",
-    "email": "jose@email.com",
-    "senha": "123456"
+    "nome": "José de Abreu",
+    "email": "jose_abreu@email.com",
+    "senha": "j4321"
 }
 ```
 
@@ -250,182 +237,135 @@ Essa é a rota que será utilizada para cadastrar um novo usuario no sistema.
 
 ```javascript
 // HTTP Status 200 / 201 / 204
-{
-    "id": 1,
-    "nome": "José",
-    "email": "jose@email.com"
-}
+// Sem conteúdo no corpo (body) da resposta
 ```
 
 ```javascript
 // HTTP Status 400 / 401 / 403 / 404
 {
-    "mensagem": "Já existe usuário cadastrado com o e-mail informado."
+    "mensagem": "O e-mail informado já está sendo utilizado por outro usuário."
 }
 ```
-
-
 <p align="center" >
-<img width="2000" src="src/assets/to_readme/criar-conta.png">
+<img width="2000" src="src/assets/to_readme/atualizar-conta.png">
 </p>
 
-### Criação de conta
+### Listar categorias
   
-`POST` `/usuario`
+`GET` `/categoria`
 
-Essa é a rota que será utilizada para cadastrar um novo usuario no sistema.
+Essa é a rota que será chamada quando o usuario logado quiser listar todas as categorias cadastradas.
 
 - **Requisição**  
   Sem parâmetros de rota ou de query.  
-  O corpo (body) deverá possuir um objeto com as seguintes propriedades (respeitando estes nomes):
-
-  - nome
-  - email
-  - senha
+  Não deverá possuir conteúdo no corpo (body) da requisição.
 
 - **Resposta**  
-  Em caso de **sucesso**, deveremos enviar no corpo (body) da resposta o conteúdo do usuário cadastrado, incluindo seu respectivo `id` e excluindo a senha criptografada.
+  Em caso de **sucesso**, o corpo (body) da resposta deverá possuir um array dos objetos (categorias) encontrados.  
   Em caso de **falha na validação**, a resposta deverá possuir **_status code_** apropriado, e em seu corpo (body) deverá possuir um objeto com uma propriedade **mensagem** que deverá possuir como valor um texto explicando o motivo da falha.
 
 - **REQUISITOS OBRIGATÓRIOS**
-  - Validação dos campos obrigatórios:
-    - nome
-    - email
-    - senha
-  - Valida se o e-mail informado já existe
-  - Senha é criptografada antes de persistir no banco de dados
-  - Usuário  é cadastrado no banco de dados
+  - O endpoint deverá responder com um array de todas as categorias cadastradas.
 
 #### **Exemplo de requisição**
 
 ```javascript
-// POST /usuario
-{
-    "nome": "José",
-    "email": "jose@email.com",
-    "senha": "123456"
-}
+// GET /categoria
+// Sem conteúdo no corpo (body) da requisição
 ```
 
 #### **Exemplos de resposta**
 
 ```javascript
 // HTTP Status 200 / 201 / 204
-{
-    "id": 1,
-    "nome": "José",
-    "email": "jose@email.com"
-}
+[
+  {
+    id: 1,
+    descricao: "Roupas",
+  },
+  {
+    id: 2,
+    descricao: "Mercado",
+  },
+];
 ```
 
 ```javascript
-// HTTP Status 400 / 401 / 403 / 404
-{
-    "mensagem": "Já existe usuário cadastrado com o e-mail informado."
-}
+// HTTP Status 200 / 201 / 204
+[];
 ```
 
-
 <p align="center" >
-<img width="2000" src="src/assets/to_readme/criar-conta.png">
+<img width="2000" src="src/assets/to_readme/listar-categorias.png">
 </p>
 
-### Criação de conta
-  
-`POST` `/usuario`
 
-Essa é a rota que será utilizada para cadastrar um novo usuario no sistema.
+### Obter extrato de transações
+  
+`GET` `/transacao/extrato`
+
+Essa é a rota que será chamada quando o usuario logado quiser obter o extrato de todas as suas transações cadastradas.
+**Lembre-se:** Deverá ser possível consultar **apenas** transações associadas ao próprio usuário logado, que deverá ser identificado através do ID presente no token de validação.
 
 - **Requisição**  
   Sem parâmetros de rota ou de query.  
-  O corpo (body) deverá possuir um objeto com as seguintes propriedades (respeitando estes nomes):
-
-  - nome
-  - email
-  - senha
+  O corpo (body) da requisição não deverá possuir nenhum conteúdo.
 
 - **Resposta**  
-  Em caso de **sucesso**, deveremos enviar no corpo (body) da resposta o conteúdo do usuário cadastrado, incluindo seu respectivo `id` e excluindo a senha criptografada.
+  Em caso de **sucesso**, deveremos enviar no corpo (body) da resposta um objeto contendo a soma de todas as transações do tipo `entrada` e a soma de todas as transações do tipo `saida`.  
   Em caso de **falha na validação**, a resposta deverá possuir **_status code_** apropriado, e em seu corpo (body) deverá possuir um objeto com uma propriedade **mensagem** que deverá possuir como valor um texto explicando o motivo da falha.
 
-- **REQUISITOS OBRIGATÓRIOS**
-  - Validação dos campos obrigatórios:
-    - nome
-    - email
-    - senha
-  - Valida se o e-mail informado já existe
-  - Senha é criptografada antes de persistir no banco de dados
-  - Usuário  é cadastrado no banco de dados
-
-#### **Exemplo de requisição**
-
-```javascript
-// POST /usuario
-{
-    "nome": "José",
-    "email": "jose@email.com",
-    "senha": "123456"
-}
-```
-
-#### **Exemplos de resposta**
-
-```javascript
-// HTTP Status 200 / 201 / 204
-{
-    "id": 1,
-    "nome": "José",
-    "email": "jose@email.com"
-}
-```
-
-```javascript
-// HTTP Status 400 / 401 / 403 / 404
-{
-    "mensagem": "Já existe usuário cadastrado com o e-mail informado."
-}
-```
-
+- **REQUISITOS OBRIGATÓRIOS**:
+  - Em caso de não existir transações do tipo `entrada` cadastradas para o usuário logado, o valor retornado no corpo (body) da resposta deverá ser 0.
+  - Em caso de não existir transações do tipo `saida` cadastradas para o usuário logado, o valor retornado no corpo (body) da resposta deverá ser 0.
 
 <p align="center" >
-<img width="2000" src="src/assets/to_readme/criar-conta.png">
+<img width="2000" src="src/assets/to_readme/exibir-extrato.png">
 </p>
 
-### Criação de conta
-  
-`POST` `/usuario`
 
-Essa é a rota que será utilizada para cadastrar um novo usuario no sistema.
+### Cadastrar transação para o usuário logado**
+  
+`POST` `/transacao`
+
+Essa é a rota que será utilizada para cadastrar uma transação associada ao usuário logado.  
+**Lembre-se:** Deverá ser possível cadastrar **apenas** transações associadas ao próprio usuário logado, que deverá ser identificado através do ID presente no token de validação.
 
 - **Requisição**  
   Sem parâmetros de rota ou de query.  
-  O corpo (body) deverá possuir um objeto com as seguintes propriedades (respeitando estes nomes):
+  O corpo (body) da requisição deverá possuir um objeto com as seguintes propriedades (respeitando estes nomes):
 
-  - nome
-  - email
-  - senha
+  - descricao
+  - valor
+  - data
+  - categoria_id
+  - tipo (campo que será informado se a transação corresponde a uma saída ou entrada de valores)
 
-- **Resposta**  
-  Em caso de **sucesso**, deveremos enviar no corpo (body) da resposta o conteúdo do usuário cadastrado, incluindo seu respectivo `id` e excluindo a senha criptografada.
+- **Resposta**
+  Em caso de **sucesso**, deveremos enviar, no corpo (body) da resposta, as informações da transação cadastrada, incluindo seu respectivo `id`.  
   Em caso de **falha na validação**, a resposta deverá possuir **_status code_** apropriado, e em seu corpo (body) deverá possuir um objeto com uma propriedade **mensagem** que deverá possuir como valor um texto explicando o motivo da falha.
 
 - **REQUISITOS OBRIGATÓRIOS**
-  - Validação dos campos obrigatórios:
-    - nome
-    - email
-    - senha
-  - Valida se o e-mail informado já existe
-  - Senha é criptografada antes de persistir no banco de dados
-  - Usuário  é cadastrado no banco de dados
+  - Validar os campos obrigatórios:
+    - descricao
+    - valor
+    - data
+    - categoria_id
+    - tipo
+  - Validar se existe categoria para o id enviado no corpo (body) da requisição.
+  - Validar se o tipo enviado no corpo (body) da requisição corresponde a palavra `entrada` ou `saida`, exatamente como descrito.
+  - Cadastrar a transação associada ao usuário logado.
 
 #### **Exemplo de requisição**
 
 ```javascript
-// POST /usuario
+// POST /transacao
 {
-    "nome": "José",
-    "email": "jose@email.com",
-    "senha": "123456"
+    "tipo": "entrada",
+    "descricao": "Salário",
+    "valor": 300000,
+    "data": "2022-03-24T15:30:00.000Z",
+    "categoria_id": 6
 }
 ```
 
@@ -434,121 +374,114 @@ Essa é a rota que será utilizada para cadastrar um novo usuario no sistema.
 ```javascript
 // HTTP Status 200 / 201 / 204
 {
-    "id": 1,
-    "nome": "José",
-    "email": "jose@email.com"
+    "id": 3,
+    "tipo": "entrada",
+    "descricao": "Salário",
+    "valor": 300000,
+    "data": "2022-03-24T15:30:00.000Z",
+    "usuario_id": 5,
+    "categoria_id": 6,
+    "categoria_nome": "Salários",
 }
 ```
 
 ```javascript
 // HTTP Status 400 / 401 / 403 / 404
 {
-    "mensagem": "Já existe usuário cadastrado com o e-mail informado."
+    "mensagem": "Todos os campos obrigatórios devem ser informados."
 }
 ```
 
-
 <p align="center" >
-<img width="2000" src="src/assets/to_readme/criar-conta.png">
+<img width="2000" src="src/assets/to_readme/cadastrar-transacao.png">
 </p>
 
-### Criação de conta
+### Listar transações
   
-`POST` `/usuario`
+`GET` `/transacao`
 
-Essa é a rota que será utilizada para cadastrar um novo usuario no sistema.
+Essa é a rota que será chamada quando o usuario logado quiser listar todas as suas transações cadastradas.  
+**Lembre-se:** Deverão ser retornadas **apenas** transações associadas ao usuário logado, que deverá ser identificado através do ID presente no token de validação.
 
 - **Requisição**  
   Sem parâmetros de rota ou de query.  
-  O corpo (body) deverá possuir um objeto com as seguintes propriedades (respeitando estes nomes):
-
-  - nome
-  - email
-  - senha
+  Não deverá possuir conteúdo no corpo (body) da requisição.
 
 - **Resposta**  
-  Em caso de **sucesso**, deveremos enviar no corpo (body) da resposta o conteúdo do usuário cadastrado, incluindo seu respectivo `id` e excluindo a senha criptografada.
+  Em caso de **sucesso**, o corpo (body) da resposta deverá possuir um array dos objetos (transações) encontrados.  
   Em caso de **falha na validação**, a resposta deverá possuir **_status code_** apropriado, e em seu corpo (body) deverá possuir um objeto com uma propriedade **mensagem** que deverá possuir como valor um texto explicando o motivo da falha.
 
 - **REQUISITOS OBRIGATÓRIOS**
-  - Validação dos campos obrigatórios:
-    - nome
-    - email
-    - senha
-  - Valida se o e-mail informado já existe
-  - Senha é criptografada antes de persistir no banco de dados
-  - Usuário  é cadastrado no banco de dados
+  - O usuário deverá ser identificado através do ID presente no token de validação
+  - O endpoint deverá responder com um array de todas as transações associadas ao usuário. Caso não exista nenhuma transação associada ao usuário deverá responder com array vazio.
 
 #### **Exemplo de requisição**
 
 ```javascript
-// POST /usuario
-{
-    "nome": "José",
-    "email": "jose@email.com",
-    "senha": "123456"
-}
+// GET /transacao
+// Sem conteúdo no corpo (body) da requisição
 ```
 
 #### **Exemplos de resposta**
 
 ```javascript
 // HTTP Status 200 / 201 / 204
-{
-    "id": 1,
-    "nome": "José",
-    "email": "jose@email.com"
-}
+[
+  {
+    id: 1,
+    tipo: "saida",
+    descricao: "Sapato amarelo",
+    valor: 15800,
+    data: "2022-03-23T15:35:00.000Z",
+    usuario_id: 5,
+    categoria_id: 4,
+    categoria_nome: "Roupas",
+  },
+  {
+    id: 3,
+    tipo: "entrada",
+    descricao: "Salário",
+    valor: 300000,
+    data: "2022-03-24T15:30:00.000Z",
+    usuario_id: 5,
+    categoria_id: 6,
+    categoria_nome: "Salários",
+  },
+];
 ```
 
 ```javascript
-// HTTP Status 400 / 401 / 403 / 404
-{
-    "mensagem": "Já existe usuário cadastrado com o e-mail informado."
-}
+// HTTP Status 200 / 201 / 204
+[];
 ```
 
-
 <p align="center" >
-<img width="2000" src="src/assets/to_readme/criar-conta.png">
+<img width="2000" src="src/assets/to_readme/listar-transacoes.png">
 </p>
 
-### Criação de conta
+### Detalhar uma transação do usuário logado
   
-`POST` `/usuario`
+`GET` `/transacao/:id`
 
-Essa é a rota que será utilizada para cadastrar um novo usuario no sistema.
+Essa é a rota que será chamada quando o usuario logado quiser obter uma das suas transações cadastradas.  
+**Lembre-se:** Deverá ser retornado **apenas** transação associada ao usuário logado, que deverá ser identificado através do ID presente no token de validação.
 
 - **Requisição**  
-  Sem parâmetros de rota ou de query.  
-  O corpo (body) deverá possuir um objeto com as seguintes propriedades (respeitando estes nomes):
-
-  - nome
-  - email
-  - senha
+  Deverá ser enviado o ID da transação no parâmetro de rota do endpoint.  
+  O corpo (body) da requisição não deverá possuir nenhum conteúdo.
 
 - **Resposta**  
-  Em caso de **sucesso**, deveremos enviar no corpo (body) da resposta o conteúdo do usuário cadastrado, incluindo seu respectivo `id` e excluindo a senha criptografada.
+  Em caso de **sucesso**, o corpo (body) da resposta deverá possuir um objeto que representa a transação encontrada, com todas as suas propriedades, conforme exemplo abaixo, acompanhado de **_status code_** apropriado.  
   Em caso de **falha na validação**, a resposta deverá possuir **_status code_** apropriado, e em seu corpo (body) deverá possuir um objeto com uma propriedade **mensagem** que deverá possuir como valor um texto explicando o motivo da falha.
 
 - **REQUISITOS OBRIGATÓRIOS**
-  - Validação dos campos obrigatórios:
-    - nome
-    - email
-    - senha
-  - Valida se o e-mail informado já existe
-  - Senha é criptografada antes de persistir no banco de dados
-  - Usuário  é cadastrado no banco de dados
+  - Validar se existe transação para o id enviado como parâmetro na rota e se esta transação pertence ao usuário logado.
 
 #### **Exemplo de requisição**
 
 ```javascript
-// POST /usuario
-{
-    "nome": "José",
-    "email": "jose@email.com",
-    "senha": "123456"
-}
+// GET /transacao/2
+// Sem conteúdo no corpo (body) da requisição
 ```
 
 #### **Exemplos de resposta**
@@ -556,120 +489,115 @@ Essa é a rota que será utilizada para cadastrar um novo usuario no sistema.
 ```javascript
 // HTTP Status 200 / 201 / 204
 {
-    "id": 1,
-    "nome": "José",
-    "email": "jose@email.com"
+    "id": 3,
+    "tipo": "entrada",
+    "descricao": "Salário",
+    "valor": 300000,
+    "data": "2022-03-24T15:30:00.000Z",
+    "usuario_id": 5,
+    "categoria_id": 6,
+    "categoria_nome": "Salários",
 }
 ```
 
 ```javascript
 // HTTP Status 400 / 401 / 403 / 404
 {
-    "mensagem": "Já existe usuário cadastrado com o e-mail informado."
+    "mensagem": "Transação não encontrada."
 }
 ```
 
-
 <p align="center" >
-<img width="2000" src="src/assets/to_readme/criar-conta.png">
+<img width="2000" src="src/assets/to_readme/detalhar-transacao.png">
 </p>
 
-### Criação de conta
+### Deletar transação
   
-`POST` `/usuario`
+`/transacao/:id`
 
-Essa é a rota que será utilizada para cadastrar um novo usuario no sistema.
+Essa é a rota que será chamada quando o usuario logado quiser excluir uma das suas transações cadastradas.  
+**Lembre-se:** Deverá ser possível excluir **apenas** transações associadas ao próprio usuário logado, que deverá ser identificado através do ID presente no token de validação.
 
 - **Requisição**  
-  Sem parâmetros de rota ou de query.  
-  O corpo (body) deverá possuir um objeto com as seguintes propriedades (respeitando estes nomes):
-
-  - nome
-  - email
-  - senha
+  Deverá ser enviado o ID da transação no parâmetro de rota do endpoint.  
+  O corpo (body) da requisição não deverá possuir nenhum conteúdo.
 
 - **Resposta**  
-  Em caso de **sucesso**, deveremos enviar no corpo (body) da resposta o conteúdo do usuário cadastrado, incluindo seu respectivo `id` e excluindo a senha criptografada.
+  Em caso de **sucesso**, não deveremos enviar conteúdo no corpo (body) da resposta.  
   Em caso de **falha na validação**, a resposta deverá possuir **_status code_** apropriado, e em seu corpo (body) deverá possuir um objeto com uma propriedade **mensagem** que deverá possuir como valor um texto explicando o motivo da falha.
 
-- **REQUISITOS OBRIGATÓRIOS**
-  - Validação dos campos obrigatórios:
-    - nome
-    - email
-    - senha
-  - Valida se o e-mail informado já existe
-  - Senha é criptografada antes de persistir no banco de dados
-  - Usuário  é cadastrado no banco de dados
+- **REQUISITOS OBRIGATÓRIOS**:
+  - Validar se existe transação para o id enviado como parâmetro na rota e se esta transação pertence ao usuário logado.
+  - Excluir a transação no banco de dados.
 
 #### **Exemplo de requisição**
 
 ```javascript
-// POST /usuario
-{
-    "nome": "José",
-    "email": "jose@email.com",
-    "senha": "123456"
-}
+// DELETE /transacao/2
+// Sem conteúdo no corpo (body) da requisição
 ```
 
 #### **Exemplos de resposta**
 
 ```javascript
 // HTTP Status 200 / 201 / 204
-{
-    "id": 1,
-    "nome": "José",
-    "email": "jose@email.com"
-}
+// Sem conteúdo no corpo (body) da resposta
 ```
 
 ```javascript
 // HTTP Status 400 / 401 / 403 / 404
 {
-    "mensagem": "Já existe usuário cadastrado com o e-mail informado."
+    "mensagem": "Transação não encontrada."
 }
 ```
 
-
 <p align="center" >
-<img width="2000" src="src/assets/to_readme/criar-conta.png">
+<img width="2000" src="src/assets/to_readme/deletar-transacoes.png">
 </p>
 
-### Criação de conta
+### Atualizar transação
   
-`POST` `/usuario`
+`PUT` `/transacao/:id`
 
-Essa é a rota que será utilizada para cadastrar um novo usuario no sistema.
+Essa é a rota que será chamada quando o usuario logado quiser atualizar uma das suas transações cadastradas.  
+**Lembre-se:** Deverá ser possível atualizar **apenas** transações associadas ao próprio usuário logado, que deverá ser identificado através do ID presente no token de validação.
 
 - **Requisição**  
-  Sem parâmetros de rota ou de query.  
-  O corpo (body) deverá possuir um objeto com as seguintes propriedades (respeitando estes nomes):
+  Deverá ser enviado o ID da transação no parâmetro de rota do endpoint.  
+  O corpo (body) da requisição deverá possuir um objeto com as seguintes propriedades (respeitando estes nomes):
 
-  - nome
-  - email
-  - senha
+  - descricao
+  - valor
+  - data
+  - categoria_id
+  - tipo (campo que será informado se a transação corresponde a uma saída ou entrada de valores)
 
 - **Resposta**  
-  Em caso de **sucesso**, deveremos enviar no corpo (body) da resposta o conteúdo do usuário cadastrado, incluindo seu respectivo `id` e excluindo a senha criptografada.
+  Em caso de **sucesso**, não deveremos enviar conteúdo no corpo (body) da resposta.  
   Em caso de **falha na validação**, a resposta deverá possuir **_status code_** apropriado, e em seu corpo (body) deverá possuir um objeto com uma propriedade **mensagem** que deverá possuir como valor um texto explicando o motivo da falha.
 
 - **REQUISITOS OBRIGATÓRIOS**
-  - Validação dos campos obrigatórios:
-    - nome
-    - email
-    - senha
-  - Valida se o e-mail informado já existe
-  - Senha é criptografada antes de persistir no banco de dados
-  - Usuário  é cadastrado no banco de dados
+  - Validar se existe transação para o id enviado como parâmetro na rota e se esta transação pertence ao usuário logado.
+  - Validar os campos obrigatórios:
+    - descricao
+    - valor
+    - data
+    - categoria_id
+    - tipo
+  - Validar se existe categoria para o id enviado no corpo (body) da requisição.
+  - Validar se o tipo enviado no corpo (body) da requisição corresponde a palavra `entrada` ou `saida`, exatamente como descrito.
+  - Atualizar a transação no banco de dados
 
 #### **Exemplo de requisição**
 
 ```javascript
-// POST /usuario
+// PUT /transacao/2
 {
-    "nome": "José",
-    "email": "jose@email.com",
-    "senha": "123456"
+	"descricao": "Sapato amarelo",
+	"valor": 15800,
+	"data": "2022-03-23 12:35:00",
+	"categoria_id": 4,
+	"tipo": "saida"
 }
 ```
 
@@ -677,25 +605,19 @@ Essa é a rota que será utilizada para cadastrar um novo usuario no sistema.
 
 ```javascript
 // HTTP Status 200 / 201 / 204
-{
-    "id": 1,
-    "nome": "José",
-    "email": "jose@email.com"
-}
+// Sem conteúdo no corpo (body) da resposta
 ```
 
 ```javascript
 // HTTP Status 400 / 401 / 403 / 404
 {
-    "mensagem": "Já existe usuário cadastrado com o e-mail informado."
+    "mensagem": "Todos os campos obrigatórios devem ser informados."
 }
 ```
 
-
 <p align="center" >
-<img width="2000" src="src/assets/to_readme/criar-conta.png">
+<img width="2000" src="src/assets/to_readme/atualizar-transacao.png">
 </p>
-
 
 
 ## Como Usar
